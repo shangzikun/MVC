@@ -4,7 +4,7 @@
 			include "./view/usercenter/login.html";
 		}
 		public function doLogin() {
-			$name = $_POST['name'];
+			$name = $_POST['username'];
 			$password = $_POST['password'];
 			$userModel =  new UserModel();
 			$userInfo = $userModel->getUserInfoByName($name);
@@ -15,7 +15,7 @@
 				echo '登录成功';
 				die();
 			} else {
-				header('Location:index.php?c=Blog&a=lists');
+				header('Refresh:3,Url=index.php?c=Blog&a=lists');
 				echo '登录不成功';
 				die();
 			}
@@ -46,7 +46,7 @@
 		}
 		public function logout () {
 			unset($_SESSION['me']);
-			header('Refresh:3,Url=index.php?c=UserCenter&a=login');
+			header('Refresh:3,Url=index.php?c=Blog&a=lists');
 			echo '注销成功';
 			die();
 		}	
