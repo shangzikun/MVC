@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=UTF-8>
+	<title>发布段子</title>	
+</head>
+<body>
+<?php if (isset($_SESSION['me']['id'])) { ?>
+你好 <?php echo $_SESSION['me']['name'] ?> 
+<a href="index.php?c=UserCenter&a=logout">注销</a>
+<?php } else { ?>
+	<a href="index.php?c=UserCenter&a=logout">登录</a>
+<?php } ?>
+<h1>添加段子</h1>
+	<form action="./index.php?c=BLog&a=doAdd" method="post">
+		<table> 
+		    内容:<textarea name="content" rows="20" cols="100"></textarea>
+		    <br>
+		    <input type="submit" name="">
+		</table> 
+	</form>
+</body>
+</html>
