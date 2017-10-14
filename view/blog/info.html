@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>详细信息</title>
+</head>
+<body>
+<?php if (isset($_SESSION['me']['id'])) { ?>
+<h1>你好 <?php echo $_SESSION['me']['name'] ?> </h1>
+<a href="index.php?c=UserCenter&a=logout">注销</a>
+<?php } else { ?>
+	<a href="index.php?c=UserCenter&a=login">登录</a>
+<?php } ?>
+<div>
+<?php echo $info['content'];?>	
+</div>
+<a href="index.php?c=Blog&a=lists">返回</a>
+</body>
+</html>

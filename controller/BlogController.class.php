@@ -21,6 +21,11 @@ class BlogController {
 	public function lists() {
 			$blogModel = new BlogModel();
 			$userModel = new UserModel();
+			$p =isset($_GET['p']) ? $_GET['p'] : 1;
+			$pageNum = 5;
+			$offset = ($p - 1) *$pageNum;
+			$cont = $blogModel->getBlogCount();
+			$allpage = ceil($count/$pageNum);			
 			$data = $blogModel->getBlogLists();
 			// foreach ($data as $key => &$value) {
 			// 	$user_info = $userModel->getUserInfoById($value['user_id']);
@@ -32,5 +37,11 @@ class BlogController {
 				$data[$key]['user_name'] = $user_info['name'];
 			}
 			include "./view/blog/lists.html";
-		}
 	}
+	public function Info() {			
+			$id = $_GET['id'];
+			$blogModel= new BlogModel();
+			$info= $blogModel->getUserInfoById($id);
+			include "./view/blog/info.html";
+	}
+}

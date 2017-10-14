@@ -1,13 +1,13 @@
 <?php
 	class UserCenterController {
 		public function login() {
-			include "./view/usercenter/login.html";
+				include "./view/usercenter/login.html";
 		}
 		public function doLogin() {
-			$name = $_POST['username'];
-			$password = $_POST['password'];
-			$userModel =  new UserModel();
-			$userInfo = $userModel->getUserInfoByName($name);
+				$name = $_POST['username'];
+				$password = $_POST['password'];
+				$userModel =  new UserModel();
+				$userInfo = $userModel->getUserInfoByName($name);
 			if ($userInfo['password'] == $password) {
 				unset($userInfo['password']); //一般来说 密码对外开放
 				$_SESSION['me'] = $userInfo;
@@ -33,6 +33,12 @@
 				die();
 			}
 			$userModel = new UserModel();
+			$userInfo = $userModel->getUserInfoByName($name);
+			if (!empty($userInfo)) {
+				header('Refresh:1,Url=index.php?c=UserCenter&a=reg');
+				echo '用户名已存在，注册失败';
+				die();
+			}
 			$status = $userModel->addUser($name , $age, $password);
 			if ($status) {
 				header('Refresh:1,Url=index.php?c=UserCenter&a=login');
@@ -45,9 +51,9 @@
 			}
 		}
 		public function logout () {
-			unset($_SESSION['me']);
-			header('Refresh:3,Url=index.php?c=Blog&a=lists');
-			echo '注销成功';
-			die();
+				unset($_SESSION['me']);
+				header('Refresh:3,Url=index.php?c=Blog&a=lists');
+				echo '注销成功';
+				die();
 		}	
 	}

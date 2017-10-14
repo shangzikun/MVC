@@ -10,14 +10,26 @@
 			$res = $this->mysqli->query($sql);
 			return $res;
 		}
-		function getBlogLists() {
-			$sql = "select * from blog";
+		function getBlogLists($offset=0,$limit=20) {
+			$sql = "select * from blog limit {$offset},{$limit}";
 			$res = $this->mysqli->query($sql);
 			$data = $res->fetch_all(MYSQL_ASSOC);
 			return $data;
 		}
-		function getUserInfoByName($name) {
-			$sql = "select * from user where name = '{$name}'";
+		// function getUserInfoByName($name) {
+		// 	$sql = "select * from user where name = '{$name}'";
+		// 	$res = $this->mysqli->query($sql);
+		// 	$data = $res->fetch_all(MYSQL_ASSOC);
+		// 	return $data[0];
+		// }
+		function getUserInfoById($id) {
+			$sql = "select * from blog where id = '{$id}'";
+			$res = $this->mysqli->query($sql);
+			$data = $res->fetch_all(MYSQL_ASSOC);
+			return $data[0];
+		}
+		function getBlogCount() {
+			$sql = "select count(*) as num from blog ";
 			$res = $this->mysqli->query($sql);
 			$data = $res->fetch_all(MYSQL_ASSOC);
 			return $data[0];
