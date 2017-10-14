@@ -26,17 +26,16 @@ class BlogController {
 		$upload = new Upload();
 		$filename = $upload->run('photo');
 		echo $filename;
-		echo $upload->returnSize();
 	}
 	public function lists() {
 			$blogModel = new BlogModel();
 			$userModel = new UserModel();
 			$p =isset($_GET['p']) ? $_GET['p'] : 1;
-			$pageNum = 5;
+			$pageNum = 2;
 			$offset = ($p - 1) *$pageNum;
 			$count = $blogModel->getBlogCount();
-			$allpage = ceil($count/$pageNum);			
-			$data = $blogModel->getBlogLists();
+			$allpage = ceil($count['num']/$pageNum);			
+			$data = $blogModel->getBlogLists($offset,$pageNum);
 			// foreach ($data as $key => &$value) {
 			// 	$user_info = $userModel->getUserInfoById($value['user_id']);
 			// 	//$data[$key]['user_name'] = $user_info['name'];

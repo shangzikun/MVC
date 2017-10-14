@@ -10,7 +10,7 @@
 			$res = $this->mysqli->query($sql);
 			return $res;
 		}
-		function getBlogLists($offset=0,$limit=20) {
+		function getBlogLists($offset,$limit) {
 			$sql = "select * from blog limit {$offset},{$limit}";
 			$res = $this->mysqli->query($sql);
 			$data = $res->fetch_all(MYSQL_ASSOC);
