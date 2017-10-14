@@ -11,11 +11,11 @@
 			if ($userInfo['password'] == $password) {
 				unset($userInfo['password']); //一般来说 密码对外开放
 				$_SESSION['me'] = $userInfo;
-				header('Refresh:3,Url=index.php?c=Blog&a=lists');
+				header('Refresh:1,Url=index.php?c=Blog&a=lists');
 				echo '登录成功';
 				die();
 			} else {
-				header('Refresh:3,Url=index.php?c=Blog&a=lists');
+				header('Refresh:2,Url=index.php?c=Blog&a=lists');
 				echo '登录不成功';
 				die();
 			}
@@ -42,17 +42,17 @@
 			$status = $userModel->addUser($name , $age, $password);
 			if ($status) {
 				header('Refresh:1,Url=index.php?c=UserCenter&a=login');
-				echo '注册成功，1秒后跳转到list';
+				echo '注册成功，1秒后跳转';
 				die();
 			} else {
-				header('Refresh:3,Url=index.php?c=UserCenter&a=reg');
-				echo '注册失败，3秒后跳转到list';
+				header('Refresh:2,Url=index.php?c=UserCenter&a=reg');
+				echo '注册失败，2秒后跳转';
 				die();
 			}
 		}
 		public function logout () {
 				unset($_SESSION['me']);
-				header('Refresh:3,Url=index.php?c=Blog&a=lists');
+				header('Refresh:1,Url=index.php?c=Blog&a=lists');
 				echo '注销成功';
 				die();
 		}	
