@@ -33,6 +33,13 @@
 	</tr>
 	<?php } ?>
 </table>
+<div align="center">
+	<ul>
+		<?php for ($i=1; $i<=$allpage; $i++) { ?> 
+			<li><a href="index.php?c=Blog&a=blogLists&p=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+		<?php } ?>
+	</ul>	
+</div>
 <a href="index.php?c=Blog&a=add">发段子</a>
 </body>
 </html>
