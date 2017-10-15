@@ -3,7 +3,7 @@
 <head>
 	<title></title>
 	<style type="text/css">
-		body {width:1000px;margin: 0 auto}
+		/*body {width:1000px;margin: 0 auto}*/
 		table {margin:0 auto;}
 		td {width:100px;text-align:center;}
 	</style>
@@ -12,16 +12,18 @@
 <body>
 <?php if (isset($_SESSION['me']['id'])) { ?>
 <h1>你好 <?php echo $_SESSION['me']['name'] ?> </h1>
+<img src="<?php echo $_SESSION['me']['image']; ?>" width="50" height="50" alt="no pic">
 <a href="index.php?c=UserCenter&a=logout">注销</a>
 <?php } else { ?>
-	<a href="index.php?c=UserCenter&a=login">登录</a>
+<a href="index.php?c=UserCenter&a=login">登录</a>
 <?php } ?>
 <table border="1px" cellspacing="0" cellpadding="0"> 
 	<tr>
-		<td>id</td>
-		<td>concent</td>
-		<td>user_id</td>
-		<td>handel</td>
+		<td>序号</td>
+		<td>段子</td>
+		<td>用户</td>
+		<td>图片</td>
+		<td>操作</td>
 	</tr>
 
 	<?php foreach($data as $key=>$value) { ?>
@@ -29,11 +31,12 @@
 		<td><?php echo $value['id']; ?></td>
 		<td><?php echo mb_substr($value['content'], 0, 19,'utf8'); ?></td>		
 		<td><?php echo $value['user_name']; ?></td>
+		<td><img src="<?php echo $value['image']; ?>" width="100" height="100" alt="no pic"></td>
 		<td><a href="index.php?c=Blog&a=Info&id=<?php echo $value['id']; ?>">详情</a></td>
 	</tr>
 	<?php } ?>
 </table>
-<div align="center">
+<div >
 	<ul>
 		<?php for ($i=1; $i<=$allpage; $i++) { ?> 
 			<li><a href="index.php?c=Blog&a=lists&p=<?php echo $i; ?>"><?php echo $i; ?></a></li>

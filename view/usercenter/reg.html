@@ -13,9 +13,9 @@
 </head>
 <body>
 <h1>注册</h1>
-<form  action="index.php?c=UserCenter&a=doReg" method="post">
+<form  action="index.php?c=UserCenter&a=doReg" method="post"  enctype="multipart/form-data">
 	<table align="center" bgcolor="yellow" cellspacing="2px" cellpadding="2px" border="2px" bordercolor="blue"> 
-		<caption align="center">用户信息</caption> 
+		<caption align="center">注册</caption> 
 			 <tr>
 			 	<td>姓名:</td>
 			 	<td><input type="text" name="username"></td>
@@ -27,6 +27,10 @@
 		     <tr>
 		     	<td>密码:	</td>
 		     	<td><input type="text" name="password"></td>
+		     </tr>
+		     <tr>
+		     	<td>头像:	</td>
+		     	<td><input type="file" name="photo"></td>
 		     </tr>
 			 <tr>
 			 	<td colspan="2" align="center"><input type="submit" name ="" value="yes"></td>

@@ -7,13 +7,17 @@
 <body>
 <?php if (isset($_SESSION['me']['id'])) { ?>
 <h1>你好 <?php echo $_SESSION['me']['name'] ?> </h1>
+<img src="<?php echo $_SESSION['me']['image']; ?>" width="50" height="50" alt="no pic">
 <a href="index.php?c=UserCenter&a=logout">注销</a>
 <?php } else { ?>
 	<a href="index.php?c=UserCenter&a=login">登录</a>
 <?php } ?>
 <div>
-<?php echo $info['content'];?>	
+<?php echo $info['content'];?>
 </div>
+
+<img src="<?php echo $info['image']; ?>" width="100" height="auto" >	
+
 <a href="index.php?c=Blog&a=lists">返回</a>
 </body>
 </html>

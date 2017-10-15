@@ -8,10 +8,12 @@ class BlogController {
 			include "./view/blog/add.html";
 	}
 	public function doAdd() {
+		$upload =L("Upload");
+		$filename = $upload->run('image');
 		$content  = $_POST['content'];
  		$user_id  = $_SESSION['me']['id'];
  	  	$blogModel = new BlogModel();
-		$status = $blogModel->addBlog($user_id, $content);
+		$status = $blogModel->addBlog($user_id, $content,$filename);
 		if ($status) {
 			header('Refresh:1,Url=index.php?c=Blog&a=lists');
 			echo '添加成功，1秒后跳转到list';
@@ -22,8 +24,7 @@ class BlogController {
 		include "./view/blog/image.html";
 	}
 	public function doImage() {
-		include "./library/Upload.class.php";
-		$upload = new Upload();
+		$upload =L("Upload");
 		$filename = $upload->run('photo');
 		echo $filename;
 	}
@@ -31,7 +32,7 @@ class BlogController {
 			$blogModel = new BlogModel();
 			$userModel = new UserModel();
 			$p =isset($_GET['p']) ? $_GET['p'] : 1;
-			$pageNum = 2;
+			$pageNum = 5;
 			$offset = ($p - 1) *$pageNum;
 			$count = $blogModel->getBlogCount();
 			$allpage = ceil($count['num']/$pageNum);			

@@ -17,8 +17,10 @@
 	<a href="index.php?c=UserCenter&a=logout">登录</a>
 <?php } ?>
 <h1>添加段子</h1>
-	<form action="./index.php?c=BLog&a=doAdd" method="post">
+	<form action="./index.php?c=BLog&a=doAdd" method="post" enctype="multipart/form-data">
 		<table> 
+			图片：<input type="file" name="image">
+			<br>
 		    内容:<textarea name="content" rows="20" cols="100"></textarea>
 		    <br>
 		    <input type="submit" name="">

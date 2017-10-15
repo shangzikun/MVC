@@ -24,6 +24,8 @@
 			include "./view/usercenter/reg.html";
 		}
 		public function doReg() {
+			$upload =L("Upload");
+			$filename = $upload->run('photo');
 			$name 	= $_POST['username'];
 			$age 	= $_POST['age'] ? $_POST['age'] : 0;
 			$password = $_POST['password'];
@@ -39,7 +41,7 @@
 				echo '用户名已存在，注册失败';
 				die();
 			}
-			$status = $userModel->addUser($name , $age, $password);
+			$status = $userModel->addUser($name , $age, $password,$filename);
 			if ($status) {
 				header('Refresh:1,Url=index.php?c=UserCenter&a=login');
 				echo '注册成功，1秒后跳转';

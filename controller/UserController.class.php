@@ -5,6 +5,7 @@ class UserController {
 			include "./view/user/add.html";
 	}
 	public function doAdd() {
+		
 		$name  = $_POST['username'] ? $_POST['username'] : '';
  		$age   = $_POST['age'] ? $_POST['age'] : 0 ;
  		$password = $_POST['password'] ? $_POST['password'] : 0;	
