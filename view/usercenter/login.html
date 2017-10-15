@@ -15,7 +15,7 @@
 <h1>登录</h1>
 <form action="index.php?c=UserCenter&a=doLogin" method="post">
 		<table align="center" bgcolor="yellow" cellspacing="2px" cellpadding="2px" border="2px" bordercolor="blue"> 
-		<caption align="center">用户信息</caption> 
+			<caption align="center">用户信息</caption> 
 			 <tr>
 			 	<td>姓名:</td>
 			 	<td><input type="text" name="username"></td>
@@ -24,11 +24,27 @@
 		     	<td>密码:	</td>
 		     	<td><input type="text" name="password"></td>
 		     </tr>
+		     <tr>
+		     	<td>验证码:	</td>
+		     	<td><input type="text" name="verify">
+		     	<img src="index.php?c=UserCenter&a=verifyCode" class="verify">
+		     	<a href="javascript:;" class="alterVerify" >看不清，换一张</a></td>
+		     </tr>
 			 <tr>
 			 	<td colspan="2" align="center"><input type="submit" name ="" value="yes"></td>
 			 </tr>
 		</table> 
 </form>
-	<a href="index.php?c=UserCenter&a=reg">去注册</a>
+<a href="index.php?c=UserCenter&a=reg">去注册</a>
+<script src="http://code.jquery.com/jquery-3.2.1.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('.alterVerify').click(function() {
+			newsrc = "index.php?c=UserCenter&a=verifyCode&v="+Math.random();
+			$('.verify').attr('src',newsrc);
+			//return false;
+		});
+	});
+</script>
 </body>
 </html>

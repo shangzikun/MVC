@@ -6,8 +6,19 @@
 		public function doLogin() {
 				$name = $_POST['username'];
 				$password = $_POST['password'];
+				$verifyCode=$_POST['verify'];
 				$userModel =  new UserModel();
 				$userInfo = $userModel->getUserInfoByName($name);
+			if (empty($name) || empty($password) || empty($verify)) {       
+       			header ('Refresh:2,Url=index.php?c=Blog&a=lists');//三秒后跳转
+       			echo "用户名或密码错误，登录不成功";
+       			die();
+       		}
+       		if ($_SESSION['verifyCode']!=$verifyCode) {
+       			header ('Refresh:2,Url=index.php?c=Blog&a=lists');//三秒后跳转
+       			echo "验证码错误，登录不成功";
+       			die();	
+       		}
 			if ($userInfo['password'] == $password) {
 				unset($userInfo['password']); //一般来说 密码对外开放
 				$_SESSION['me'] = $userInfo;
@@ -16,7 +27,7 @@
 				die();
 			} else {
 				header('Refresh:2,Url=index.php?c=Blog&a=lists');
-				echo '登录不成功';
+				echo '用户名或密码错误，登录不成功';
 				die();
 			}
 		}
@@ -58,4 +69,23 @@
 				echo '注销成功';
 				die();
 		}	
+		public function verifyCode() {
+			header("Content-Type:image/png");
+
+			$img = imagecreate(50, 25);
+
+			$back = imagecolorallocate($img, 0xFF, 0xFF, 0xFF);
+
+			$red = imagecolorallocate($img, 255, 0, 0);
+
+
+			$str = getRandom(4) ;
+			$_SESSION['verifyCode'] = $str;
+			imagestring($img, 5, 7, 5, $str, $red);
+
+			imagepng($img);
+
+			imagedestroy($img);
+		}	
+
 	}
