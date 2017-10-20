@@ -5,8 +5,9 @@
 			$this->mysqli = new mysqli("127.0.0.1","root","","ztstu");
 			$this->mysqli->query('set names utf8');
 		}
-		function addBlog($user_id, $content,$image='') {
-			$sql = "insert into blog(content,user_id,image) value ('{$content}', {$user_id},'{$image}')";
+		function addBlog($data) {
+			$time=time();
+			$sql = "insert into blog(content,user_id,image,title,classify_id,createtime) value ('{$data['content']}', {$data['user_id']}, '{$data['image']}','{$data['title']}', '{$data['classify']}',{$time})";
 			$res = $this->mysqli->query($sql);
 			return $res;
 		}

@@ -9,8 +9,8 @@
 				$verifyCode=$_POST['verify'];
 				$userModel =  new UserModel();
 				$userInfo = $userModel->getUserInfoByName($name);
-			if (empty($name) || empty($password) || empty($verify)) {       
-       			header ('Refresh:2,Url=index.php?c=Blog&a=lists');//三秒后跳转
+			if (empty($name) || empty($password) || empty($verifyCode)) {       
+       			header ('Refresh:2,Url=index.php?c=UserCenter&a=login');
        			echo "用户名或密码错误，登录不成功";
        			die();
        		}
@@ -27,7 +27,7 @@
 				die();
 			} else {
 				header('Refresh:2,Url=index.php?c=Blog&a=lists');
-				echo '用户名或密码错误，登录不成功';
+				echo '1用户名或密码错误，登录不成功';
 				die();
 			}
 		}
